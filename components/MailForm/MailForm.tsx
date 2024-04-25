@@ -2,7 +2,8 @@
 
 import { Input } from "../ui/input";
 import React from "react";
-import { Form } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { FormProvider } from "react-hook-form";
 import { Button } from "../ui/button";
 import {
   FormField,
@@ -14,11 +15,22 @@ import {
 } from "../ui/form";
 
 const MailForm = () => {
+  const form = useForm();
+
+  function onSubmit(values: any) {
+    console.log(values);
+  }
+
   return (
-    <Form>
-      <form onSubmit={() => {}} className="space-y-8">
+    <FormProvider {...form}>
+      <form
+        onSubmit={() => {
+          form.handleSubmit(onSubmit);
+        }}
+        className="container flex flex-col gap-3"
+      >
         <FormField
-          // control={form.control}
+          control={form.control}
           name="username"
           render={({ field }) => (
             <FormItem>
@@ -35,7 +47,7 @@ const MailForm = () => {
         />
         <Button type="submit">Submit</Button>
       </form>
-    </Form>
+    </FormProvider>
   );
 };
 
