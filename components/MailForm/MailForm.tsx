@@ -35,9 +35,7 @@ const MailForm = () => {
   return (
     <FormProvider {...form}>
       <form
-        onSubmit={() => {
-          form.handleSubmit(onSubmit);
-        }}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="container flex flex-col gap-3"
       >
         <FormField
