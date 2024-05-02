@@ -14,4 +14,7 @@ export const formSchema = z.object({
     .string()
     .min(10, { message: "本文は10文字以上で入力してください。" })
     .max(160, { message: "本文は160文字以下で入力してください。" }),
+  file: z
+    .custom<FileList>()
+    .refine((files) => files?.length !== 0, "ファイル画像が必要です。"),
 });
