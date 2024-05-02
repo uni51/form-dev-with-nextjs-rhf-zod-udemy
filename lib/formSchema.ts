@@ -26,7 +26,7 @@ export const formSchema = z.object({
     .max(160, { message: "本文は160文字以下で入力してください。" }),
   file: z
     .custom<FileList>()
-    .refine((files) => files?.length !== 0, "ファイル画像が必要です。")
+    .refine((files) => files?.length > 0, "ファイル画像が必要です。")
     .refine(
       (files) => files?.[0].size <= MAX_FILE_SIZE,
       `画像サイズは${MAX_MB}MBまでです。`
